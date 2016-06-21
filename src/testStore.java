@@ -73,6 +73,7 @@ public class testStore {
 				System.out
 						.println("\nPlease select an item#, view order, view menu, or checkout");
 				option2 = scan.nextLine();
+				Vailidator.getIndex(scan, option2);
 
 				if (option2.equals("view order")) {
 					// run printOrder
