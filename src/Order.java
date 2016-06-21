@@ -12,8 +12,10 @@ public class Order {
 	}
 
 	// user chooses items - they are added to newOrder by id number
-	public void addItem(int id) {
-		newOrder.add(id);
+	public void addItem(int id, int quantity) {
+		for (int i = 0; i < quantity; i++) {
+			newOrder.add(id);
+		}
 	}
 
 	// getFile() reads file and adds item's id to arrayList;

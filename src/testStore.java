@@ -1,3 +1,5 @@
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -67,15 +69,25 @@ public class testStore {
 				} else if (option2.equals("view menu")) {
 					newOrder.printMenu();
 				} else {
-				}
-				// add item to order
-				for (String[] s : products) {
-					if (s[0].equals(option2)) {
-						newOrder.addItem(Integer.parseInt(s[0]));
+					// add item to order
+					System.out.print("How many?");
+					int quantity = scan.nextInt();
+					scan.nextLine();
+					for (String[] s : products) {
+						if (s[0].equals(option2)) {
+							newOrder.addItem(Integer.parseInt(s[0]), quantity);
+							double cost = quantity * Double.parseDouble(s[3]);
+							BigDecimal bd = new BigDecimal(cost).setScale(2,
+									RoundingMode.HALF_EVEN);
+
+							cost = bd.doubleValue();
+
+							System.out.println(quantity + " * " + s[1] + " : $"
+									+ cost);
+						}
 					}
 				}
 			} while (!option2.equals("checkout"));
-
 		}
 
 		// continue?
