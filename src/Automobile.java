@@ -3,14 +3,14 @@ import java.math.RoundingMode;
 
 public class Automobile extends Product implements Taxable {
 
-	public Automobile(String name, double price) {
+	public Automobile(String name, double price, String description) {
 		setId();
 		setName(name);
 		setPrice(price, applyTaxes(price));
+		setDescription(description);
 		setCategory("Automobile");
 
-		FileOperations.writeToFile(getId(), getName(), getCategory(), getPrice(),
-				getPostTax());
+		FileOperations.writeToFile(getId(), getName(),  getCategory(), getDescription(), getPrice(), getPostTax());
 	}
 
 	// apply 6% sales tax to price

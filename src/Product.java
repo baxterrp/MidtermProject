@@ -7,6 +7,15 @@ public abstract class Product {
 	private String name;
 	private double price;
 	private double postTax;
+	private String description;
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getDescription() {
+		return description;
+	}
 
 	public void setName(String name) {
 		this.name = name;
@@ -43,10 +52,10 @@ public abstract class Product {
 			}
 
 		}
-		
-		maxId +=1;
-		
-		this.id= maxId;
+
+		maxId += 1;
+
+		this.id = maxId;
 	}
 
 	public int getId() {

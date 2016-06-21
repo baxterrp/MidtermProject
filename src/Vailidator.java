@@ -14,12 +14,18 @@ public class Vailidator {
 	}
 
 	public static String getAddProduct(Scanner scan, String ans) {
-		while (!ans.equalsIgnoreCase("Consumables")
-				|| !ans.equalsIgnoreCase("Housewares")
-				|| !ans.equalsIgnoreCase("Automobile")) {
-			System.out
-					.println("Invalid input. You must choose \"Consumables\" or \"Housewares\" or \"Automobile\"");
-			ans = scan.nextLine();
+		Scanner vScan = scan;
+		boolean isValid = false;
+		while (!isValid) {
+			if (!(ans.equals("Consumable"))
+					&& !(ans.equalsIgnoreCase("Housewares"))
+					&& !(ans.equalsIgnoreCase("Automobile"))) {
+				System.out
+						.println("Invalid input. You must choose \"Consumables\" or \"Housewares\" or \"Automobile\"");
+				ans = vScan.nextLine();
+			} else {
+				isValid = true;
+			}
 		}
 		return ans;
 	}

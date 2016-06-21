@@ -31,20 +31,20 @@ public class Order {
 			for (String[] s : products) {
 				if (i == Integer.parseInt(s[0])) {
 
-					if (s[1].length() > 16) {
+					if (s[1].length() > 15) {
 						output += s[0] + "\t\t" + s[1] + "\t" + s[2] + "\t\t"
-								+ "$" + s[3] + "\n";
+								+ "$" + s[4] + "\n";
 
 					} else if (s[1].length() > 7) {
 						output += s[0] + "\t\t" + s[1] + "\t\t" + s[2] + "\t\t"
-								+ "$" + s[3] + "\n";
+								+ "$" + s[4] + "\n";
 
 					} else {
 						output += s[0] + "\t\t" + s[1] + "\t\t\t" + s[2]
-								+ "\t\t" + "$" + s[3] + "\n";
+								+ "\t\t" + "$" + s[4] + "\n";
 					}
 
-					subTotal += Double.parseDouble(s[3]);
+					subTotal += Double.parseDouble(s[4]);
 
 					BigDecimal bd = new BigDecimal(subTotal).setScale(2,
 							RoundingMode.HALF_EVEN);
@@ -68,8 +68,8 @@ public class Order {
 		for (int i : newOrder) {
 			for (String[] s : products) {
 				if (i == Integer.parseInt(s[0])) {
-					total += Double.parseDouble(s[4]);
-					subTotal += Double.parseDouble(s[3]);
+					total += Double.parseDouble(s[5]);
+					subTotal += Double.parseDouble(s[4]);
 				}
 			}
 		}
@@ -94,17 +94,17 @@ public class Order {
 		System.out
 				.println("Item#\t\tItem\t\t\tCategory\t\tPrice\t\t\t\n****\t\t****\t\t\t********\t\t*****");
 		for (String[] s : products) {
-			if (s[1].length() > 16) {
+			if (s[1].length() > 14) {
 				System.out.println(s[0] + "\t\t" + s[1] + "\t" + s[2] + "\t\t"
-						+ "$" + s[3]);
+						+ "$" + s[4]);
 
 			} else if (s[1].length() > 7) {
 				System.out.println(s[0] + "\t\t" + s[1] + "\t\t" + s[2]
-						+ "\t\t" + "$" + s[3]);
+						+ "\t\t" + "$" + s[4]);
 
 			} else {
 				System.out.println(s[0] + "\t\t" + s[1] + "\t\t\t" + s[2]
-						+ "\t\t" + "$" + s[3]);
+						+ "\t\t" + "$" + s[4]);
 			}
 		}
 	}

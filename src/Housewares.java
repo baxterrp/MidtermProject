@@ -4,13 +4,14 @@ import java.math.RoundingMode;
 
 public class Housewares extends Product implements Taxable{
 	
-	public Housewares(String name, double price){
+	public Housewares(String name, double price, String description){
 		setId();
 		setName(name);
 		setPrice(price, applyTaxes(price));
+		setDescription(description);
 		setCategory("Housewares");
 		
-		FileOperations.writeToFile(getId(), getName(), getCategory(), getPrice(), getPostTax());
+		FileOperations.writeToFile(getId(), getName(),  getCategory(), getDescription(), getPrice(), getPostTax());
 	}
 	
 	//apply 6% sales tax to price
