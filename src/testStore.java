@@ -8,12 +8,14 @@ public class testStore {
 		// who are you??/?
 		System.out.print("What would you like to do? Add item / Purchase item");
 		String option = scan.nextLine();
+		option = Vailidator.getUserChoice(scan, option);
 		System.out.println();
 		if (Character.toLowerCase(option.charAt(0)) == 'a') {
 			System.out
 					.print("What would you like to add? Consumable, Housewares, Automobile : ");
 			String cat = scan.nextLine();
 			Product newProduct = null;
+			cat = Vailidator.getAddProduct(scan, cat);
 			// scan.in
 			System.out.print("Enter a name: ");
 			String name = scan.nextLine();
@@ -60,6 +62,7 @@ public class testStore {
 
 			System.out.println("\nPlease select an item or checkout");
 			String option2 = scan.nextLine();
+			option2 = Vailidator.getCheckout(scan, option2);
 		}
 
 		// continue?
