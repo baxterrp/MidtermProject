@@ -43,6 +43,7 @@ public class FileOperations {
 				new FileReader(productsFile))) {
 
 			String line = in.readLine();
+			
 			while (line != null) {
 				String[] display = line.split(",");
 				products.add(display);

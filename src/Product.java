@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public abstract class Product {
 
 	private int id;
@@ -9,8 +11,8 @@ public abstract class Product {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public String getName(){
+
+	public String getName() {
 		return name;
 	}
 
@@ -18,22 +20,39 @@ public abstract class Product {
 		this.price = pretax;
 		this.postTax = postTax;
 	}
-	
-	public double getPrice(){
+
+	public double getPrice() {
 		return price;
 	}
 
-	public double getPostTax(){
+	public double getPostTax() {
 		return postTax;
 	}
-	
-	public String getCategory(){
+
+	public String getCategory() {
 		return category;
 	}
-	
-	public int getId(){
+
+	public void setId() {
+		ArrayList<String[]> products = FileOperations.getFile();
+		int maxId = 0;
+
+		for (String[] s : products) {
+			if (Integer.parseInt(s[0]) > maxId) {
+				maxId = Integer.parseInt(s[0]);
+			}
+
+		}
+		
+		maxId +=1;
+		
+		this.id= maxId;
+	}
+
+	public int getId() {
 		return id;
 	}
+
 	public void setCategory(String category) {
 		this.category = category;
 	}

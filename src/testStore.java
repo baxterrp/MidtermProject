@@ -23,46 +23,78 @@ public class testStore {
 			System.out.print("Enter a price: ");
 			double price = scan.nextDouble();
 			System.out.println();
+			String continueAdd = "yes";
 
-			// switch(in)
-			// newProduct = new Consumable(in, price);
-			switch (cat) {
-			case "Consumable":
-				newProduct = new Consumable(name, price);
-				break;
-			case "Housewares":
-				newProduct = new Housewares(name, price);
-				break;
-			case "Automobile":
-				newProduct = new Automobile(name, price);
-				break;
-			}
 
+			do {
+
+				System.out
+						.print("What would you like to add? Consumable, Housewares, Automobile : ");
+				cat = scan.nextLine();
+				newProduct = null;
+				// scan.in
+				System.out.print("Enter a name: ");
+				name = scan.nextLine();
+				// scan.in for price too
+				System.out.print("Enter a price: ");
+				price = scan.nextDouble();
+				scan.nextLine();
+				System.out.println();
+
+				// switch(in)
+				// newProduct = new Consumable(in, price);
+				switch (cat) {
+				case "Consumable":
+					newProduct = new Consumable(name, price);
+					break;
+				case "Housewares":
+					newProduct = new Housewares(name, price);
+					break;
+				case "Automobile":
+					newProduct = new Automobile(name, price);
+					break;
+				}
+				System.out.println("Add another?");
+				continueAdd = scan.nextLine();
+			} while (Character.toLowerCase(continueAdd.charAt(0)) == 'y');
 		} else {
 			// constructor will call writetofile method
 
 			ArrayList<String[]> products = FileOperations.getFile();
+			Order newOrder = new Order();
 
-			System.out
-					.println("Item\t\t\tCategory\t\tPrice\t\t\t\n****\t\t\t********\t\t*****");
-			for (String[] s : products) {
-				if (s[1].length() > 16) {
-					System.out
-							.println(s[1] + "\t" + s[2] + "\t\t" + "$" + s[3]);
+			newOrder.printMenu();
+			String option2 = "";
 
-				} else if (s[1].length() > 8) {
-					System.out.println(s[1] + "\t\t" + s[2] + "\t\t" + "$"
-							+ s[3]);
+			do {
 
+				System.out
+						.println("\nPlease select an item#, view order, view menu, or checkout");
+				option2 = scan.nextLine();
+
+				if (option2.equals("view order")) {
+					// run printOrder
+					System.out.println(newOrder.printOrder());
+
+				} else if (option2.equals("checkout")) {
+					newOrder.checkout();
+				} else if (option2.equals("view menu")) {
+					newOrder.printMenu();
 				} else {
-					System.out.println(s[1] + "\t\t\t" + s[2] + "\t\t" + "$"
-							+ s[3]);
 				}
-			}
+				// add item to order
+				for (String[] s : products) {
+					if (s[0].equals(option2)) {
+						newOrder.addItem(Integer.parseInt(s[0]));
+					}
+				}
+			} while (!option2.equals("checkout"));
+
 
 			System.out.println("\nPlease select an item or checkout");
-			String option2 = scan.nextLine();
+			option2 = scan.nextLine();
 			option2 = Vailidator.getCheckout(scan, option2);
+
 		}
 
 		// continue?
@@ -75,5 +107,4 @@ public class testStore {
 		// additem / view menu / checkout
 		scan.close();
 	}
-
 }

@@ -5,11 +5,12 @@ import java.math.RoundingMode;
 public class Housewares extends Product implements Taxable{
 	
 	public Housewares(String name, double price){
+		setId();
 		setName(name);
 		setPrice(price, applyTaxes(price));
 		setCategory("Housewares");
 		
-		FileOperations.writeToFile(5, getName(), getCategory(), getPrice(), getPostTax());
+		FileOperations.writeToFile(getId(), getName(), getCategory(), getPrice(), getPostTax());
 	}
 	
 	//apply 6% sales tax to price
