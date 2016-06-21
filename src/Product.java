@@ -9,12 +9,31 @@ public abstract class Product {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public String getName(){
+		return name;
+	}
 
 	public void setPrice(double pretax, double postTax) {
 		this.price = pretax;
 		this.postTax = postTax;
 	}
+	
+	public double getPrice(){
+		return price;
+	}
 
+	public double getPostTax(){
+		return postTax;
+	}
+	
+	public String getCategory(){
+		return category;
+	}
+	
+	public int getId(){
+		return id;
+	}
 	public void setCategory(String category) {
 		this.category = category;
 	}
