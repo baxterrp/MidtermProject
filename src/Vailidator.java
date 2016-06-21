@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Vailidator {
 	//Validates first question
@@ -18,7 +19,25 @@ public class Vailidator {
 		}
 		return ans;
 	}
-
+		public static String getIndex(Scanner scan, String ans){
+			boolean isValid = false;
+			ArrayList<String[]> products = FileOperations.getFile();
+				while(!isValid){
+					for(String [] s : products){
+						if (ans.equals(s[0])){
+							isValid = true;
+						}else
+						System.out.println("Invalid input. You must choose \"item#\" or \"view order\" or \"view menu\" or \"checkout\"");
+					}
+				}
+				return ans;
+		}
+	
+	
+	
+	
+	
+	
 	public static String getContinue(Scanner scan, String ans) {
 		while (Character.toLowerCase(ans.charAt(0)) != 'y'
 				&& Character.toLowerCase(ans.charAt(0)) != 'n') {
