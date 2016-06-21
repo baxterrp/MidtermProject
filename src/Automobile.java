@@ -4,11 +4,12 @@ import java.math.RoundingMode;
 public class Automobile extends Product implements Taxable {
 
 	public Automobile(String name, double price) {
+		setId();
 		setName(name);
 		setPrice(price, applyTaxes(price));
 		setCategory("Automobile");
 
-		FileOperations.writeToFile(5, getName(), getCategory(), getPrice(),
+		FileOperations.writeToFile(getId(), getName(), getCategory(), getPrice(),
 				getPostTax());
 	}
 
