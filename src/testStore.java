@@ -10,22 +10,36 @@ public class testStore {
 		// who are you??/?
 		System.out.print("What would you like to do? Add item / Purchase item");
 		String option = scan.nextLine();
+		option = Vailidator.getUserChoice(scan, option);
 		System.out.println();
 		if (Character.toLowerCase(option.charAt(0)) == 'a') {
+			System.out
+					.print("What would you like to add? Consumable, Housewares, Automobile : ");
+			String cat = scan.nextLine();
+			Product newProduct = null;
+			cat = Vailidator.getAddProduct(scan, cat);
+			// scan.in
+			System.out.print("Enter a name: ");
+			String name = scan.nextLine();
+			// scan.in for price too
+			System.out.print("Enter a price: ");
+			double price = scan.nextDouble();
+			System.out.println();
 			String continueAdd = "yes";
+
 
 			do {
 
 				System.out
 						.print("What would you like to add? Consumable, Housewares, Automobile : ");
-				String cat = scan.nextLine();
-				Product newProduct = null;
+				cat = scan.nextLine();
+				newProduct = null;
 				// scan.in
 				System.out.print("Enter a name: ");
-				String name = scan.nextLine();
+				name = scan.nextLine();
 				// scan.in for price too
 				System.out.print("Enter a price: ");
-				double price = scan.nextDouble();
+				price = scan.nextDouble();
 				scan.nextLine();
 				System.out.println();
 
@@ -88,6 +102,11 @@ public class testStore {
 					}
 				}
 			} while (!option2.equals("checkout"));
+
+			System.out.println("\nPlease select an item or checkout");
+			option2 = scan.nextLine();
+			option2 = Vailidator.getCheckout(scan, option2);
+
 		}
 
 		// continue?
