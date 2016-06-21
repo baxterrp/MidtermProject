@@ -104,9 +104,9 @@ public class testStore {
 				}
 			} while (!option2.equals("checkout"));
 
-			System.out.println("\nPlease select an item or checkout");
+/*			System.out.println("\nPlease select an item or checkout");
 			option2 = scan.nextLine();
-			option2 = Vailidator.getCheckout(scan, option2);
+			option2 = Vailidator.getCheckout(scan, option2);*/
 
 		}
 
