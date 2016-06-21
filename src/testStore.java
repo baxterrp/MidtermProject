@@ -69,12 +69,15 @@ public class testStore {
 			String option2 = "";
 			do {
 
-				System.out.println("\nPlease select an item, view order, or checkout");
+				System.out
+						.println("\nPlease select an item, view order, or checkout");
 				option2 = scan.nextLine();
 				if (option2.equals("view order")) {
 					// run printOrder
 					System.out.println(newOrder.printOrder());
 
+				} else if (option2.equals("checkout")) {
+					newOrder.checkout();
 				} else {
 					// add item to order
 					for (String[] s : products) {

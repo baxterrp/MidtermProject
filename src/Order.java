@@ -43,10 +43,10 @@ public class Order {
 					}
 
 					subTotal += Double.parseDouble(s[3]);
-					
+
 					BigDecimal bd = new BigDecimal(subTotal).setScale(2,
 							RoundingMode.HALF_EVEN);
-					
+
 					subTotal = bd.doubleValue();
 				}
 			}
@@ -55,5 +55,28 @@ public class Order {
 		output += "\nSub Total\t\t\t\t\t$" + subTotal;
 
 		return output;
+	}
+
+	public void checkout() {
+		ArrayList<String[]> products = FileOperations.getFile();
+
+		String output = printOrder() + "\n";
+		double total = 0;
+
+		for (int i : newOrder) {
+			for (String[] s : products) {
+				if (i == Integer.parseInt(s[0])) {
+					total += Double.parseDouble(s[4]);
+				}
+			}
+		}
+
+		BigDecimal bd = new BigDecimal(total).setScale(2,
+				RoundingMode.HALF_EVEN);
+
+		total = bd.doubleValue();
+
+		output += "Total\t\t\t\t\t\t$" + total;
+		System.out.println(output);
 	}
 }
