@@ -7,7 +7,7 @@ public class testStore {
 	public static void main(String[] args) {
 
 		Scanner scan = new Scanner(System.in);
-		// who are you??/?
+
 		System.out.print("What would you like to do? Add item / Purchase item");
 		String option = scan.nextLine();
 		option = Vailidator.getUserChoice(scan, option);
@@ -104,20 +104,8 @@ public class testStore {
 				}
 			} while (!option2.equals("checkout"));
 
-/*			System.out.println("\nPlease select an item or checkout");
-			option2 = scan.nextLine();
-			option2 = Vailidator.getCheckout(scan, option2);*/
-
 		}
 
-		// continue?
-
-		// user
-		// print menu
-		// add to cart/ view menu // if no items in arraylist no checkout option
-		// add to cart
-		// scan.in >> item
-		// additem / view menu / checkout
 		scan.close();
 	}
 }

@@ -7,7 +7,7 @@ public class Vailidator {
 		while (!ans.equalsIgnoreCase("Add item")
 				&& !ans.equalsIgnoreCase("Purchase item")) {
 			System.out
-					.println("Invaild input. You must choose \"Add item\" or \"Purchase item\"");
+					.println("Invalid input. You must choose \"Add item\" or \"Purchase item\"");
 			ans = scan.nextLine();
 		}
 		return ans;
@@ -60,13 +60,4 @@ public class Vailidator {
 		}
 		return ans;
 	}
-
-	// Validates checkout or add item
-	/*
-	 * public static String getCheckout(Scanner scan, String ans) { while
-	 * (!ans.equalsIgnoreCase("Please select an item") &&
-	 * !ans.equalsIgnoreCase("checkout")) { System.out .println(
-	 * "Invalid input. You must choose \"Please select an item\" or \"checkout\""
-	 * ); ans = scan.nextLine(); } return ans; }
-	 */
 }
