@@ -49,41 +49,29 @@ public class testStore {
 			ArrayList<String[]> products = FileOperations.getFile();
 			Order newOrder = new Order();
 
-			// format tabbing for output
-			System.out
-					.println("Item\t\t\tCategory\t\tPrice\t\t\t\n****\t\t\t********\t\t*****");
-			for (String[] s : products) {
-				if (s[1].length() > 16) {
-					System.out
-							.println(s[1] + "\t" + s[2] + "\t\t" + "$" + s[3]);
-
-				} else if (s[1].length() > 8) {
-					System.out.println(s[1] + "\t\t" + s[2] + "\t\t" + "$"
-							+ s[3]);
-
-				} else {
-					System.out.println(s[1] + "\t\t\t" + s[2] + "\t\t" + "$"
-							+ s[3]);
-				}
-			}
+			newOrder.printMenu();
 			String option2 = "";
+
 			do {
 
 				System.out
-						.println("\nPlease select an item, view order, or checkout");
+						.println("\nPlease select an item#, view order, view menu, or checkout");
 				option2 = scan.nextLine();
+
 				if (option2.equals("view order")) {
 					// run printOrder
 					System.out.println(newOrder.printOrder());
 
 				} else if (option2.equals("checkout")) {
 					newOrder.checkout();
+				} else if (option2.equals("view menu")) {
+					newOrder.printMenu();
 				} else {
-					// add item to order
-					for (String[] s : products) {
-						if (s[1].equals(option2)) {
-							newOrder.addItem(Integer.parseInt(s[0]));
-						}
+				}
+				// add item to order
+				for (String[] s : products) {
+					if (s[0].equals(option2)) {
+						newOrder.addItem(Integer.parseInt(s[0]));
 					}
 				}
 			} while (!option2.equals("checkout"));

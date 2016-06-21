@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Order {
 
-	ArrayList<Integer> newOrder = new ArrayList<Integer>();
+	private ArrayList<String[]> products = FileOperations.getFile();
+	private ArrayList<Integer> newOrder = new ArrayList<Integer>();
 
 	public Order() {
 
@@ -19,27 +20,26 @@ public class Order {
 
 	public String printOrder() {
 
-		ArrayList<String[]> products = FileOperations.getFile();
 		double subTotal = 0;
 		String output = "";
 
 		System.out
-				.println("Item\t\t\tCategory\t\tPrice\t\t\t\n****\t\t\t********\t\t*****");
+				.println("Item#\t\tItem\t\t\tCategory\t\tPrice\t\t\t\n*****\t\t****\t\t\t********\t\t*****");
 		for (int i : newOrder) {
 			for (String[] s : products) {
 				if (i == Integer.parseInt(s[0])) {
 
 					if (s[1].length() > 16) {
-						output += s[1] + "\t" + s[2] + "\t\t" + "$" + s[3]
-								+ "\n";
+						output += s[0] + "\t\t" + s[1] + "\t" + s[2] + "\t\t"
+								+ "$" + s[3] + "\n";
 
-					} else if (s[1].length() > 8) {
-						output += s[1] + "\t\t" + s[2] + "\t\t" + "$" + s[3]
-								+ "\n";
+					} else if (s[1].length() > 7) {
+						output += s[0] + "\t\t" + s[1] + "\t\t" + s[2] + "\t\t"
+								+ "$" + s[3] + "\n";
 
 					} else {
-						output += s[1] + "\t\t\t" + s[2] + "\t\t" + "$" + s[3]
-								+ "\n";
+						output += s[0] + "\t\t" + s[1] + "\t\t\t" + s[2]
+								+ "\t\t" + "$" + s[3] + "\n";
 					}
 
 					subTotal += Double.parseDouble(s[3]);
@@ -52,21 +52,22 @@ public class Order {
 			}
 		}
 
-		output += "\nSub Total\t\t\t\t\t$" + subTotal;
+		output += "\nSub Total\t\t\t\t\t\t\t$" + subTotal;
 
 		return output;
 	}
 
 	public void checkout() {
-		ArrayList<String[]> products = FileOperations.getFile();
 
 		String output = printOrder() + "\n";
 		double total = 0;
+		double subTotal = 0;
 
 		for (int i : newOrder) {
 			for (String[] s : products) {
 				if (i == Integer.parseInt(s[0])) {
 					total += Double.parseDouble(s[4]);
+					subTotal += Double.parseDouble(s[3]);
 				}
 			}
 		}
@@ -75,8 +76,34 @@ public class Order {
 				RoundingMode.HALF_EVEN);
 
 		total = bd.doubleValue();
+		double taxes = total - subTotal;
 
-		output += "Total\t\t\t\t\t\t$" + total;
+		BigDecimal bd2 = new BigDecimal(taxes).setScale(2,
+				RoundingMode.HALF_EVEN);
+
+		taxes = bd2.doubleValue();
+
+		output += "Taxes\t\t\t\t\t\t\t\t$" + taxes + "\n\n";
+		output += "Total\t\t\t\t\t\t\t\t$" + total;
 		System.out.println(output);
+	}
+
+	public void printMenu() {
+		System.out
+				.println("Item#\t\tItem\t\t\tCategory\t\tPrice\t\t\t\n****\t\t****\t\t\t********\t\t*****");
+		for (String[] s : products) {
+			if (s[1].length() > 16) {
+				System.out.println(s[0] + "\t\t" + s[1] + "\t" + s[2] + "\t\t"
+						+ "$" + s[3]);
+
+			} else if (s[1].length() > 7) {
+				System.out.println(s[0] + "\t\t" + s[1] + "\t\t" + s[2]
+						+ "\t\t" + "$" + s[3]);
+
+			} else {
+				System.out.println(s[0] + "\t\t" + s[1] + "\t\t\t" + s[2]
+						+ "\t\t" + "$" + s[3]);
+			}
+		}
 	}
 }
