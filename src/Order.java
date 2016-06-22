@@ -81,7 +81,7 @@ public class Order {
 
 		//output totals
 		output += "Taxes\t\t\t\t\t\t\t\t$" + String.format("%.2f", taxes) + "\n\n";
-		output += "Total\t\t\t\t\t\t\t\t$" + total;
+		output += "Total\t\t\t\t\t\t\t\t$" + String.format("%.2f", total);
 		System.out.println(output);
 	}
 
