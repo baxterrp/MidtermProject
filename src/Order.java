@@ -83,6 +83,7 @@ public class Order {
 		output += "Taxes\t\t\t\t\t\t\t\t$" + String.format("%.2f", taxes) + "\n\n";
 		output += "Total\t\t\t\t\t\t\t\t$" + total;
 		System.out.println(output);
+		PaymentType.getType(total);
 	}
 
 	//print menu loops through products printing out each item line by line
