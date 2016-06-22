@@ -77,7 +77,6 @@ public class Order {
 
 		// calculate amount of taxes by subtracting subTotal from total
 		double taxes = total - subTotal;
-
 		double change = PaymentType.getType(total);
 
 		// output receipt
