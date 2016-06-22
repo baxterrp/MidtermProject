@@ -1,0 +1,2 @@
+1,apple,Consumable,apple,3.0,3.0
+2,bread,Consumable,loeaf,2.45,2.45

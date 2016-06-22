@@ -4,8 +4,8 @@ import java.util.Scanner;
 public class Vailidator {
 	// Validates first question
 	public static String getUserChoice(Scanner scan, String ans) {
-		while (!ans.equalsIgnoreCase("Add item")
-				&& !ans.equalsIgnoreCase("Purchase item")) {
+		while (!ans.equalsIgnoreCase("Add")
+				&& !ans.equalsIgnoreCase("Purchase")) {
 			System.out
 					.println("Invalid input. You must choose \"Add item\" or \"Purchase item\"");
 			ans = scan.nextLine();
