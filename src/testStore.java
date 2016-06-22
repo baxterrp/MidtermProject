@@ -7,57 +7,50 @@ public class testStore {
 	public static void main(String[] args) {
 
 		Scanner scan = new Scanner(System.in);
-		// who are you??/?
+
 		System.out.print("What would you like to do? Add item / Purchase item");
 		String option = scan.nextLine();
 		option = Vailidator.getUserChoice(scan, option);
 		System.out.println();
-		if (Character.toLowerCase(option.charAt(0)) == 'a') {
-			System.out
-					.print("What would you like to add? Consumable, Housewares, Automobile : ");
-			String cat = scan.nextLine();
-			Product newProduct = null;
-			cat = Vailidator.getAddProduct(scan, cat);
-			// scan.in
-			System.out.print("Enter a name: ");
-			String name = scan.nextLine();
-			// scan.in for price too
-			System.out.print("Enter a price: ");
-			double price = scan.nextDouble();
-			System.out.println();
-			String continueAdd = "yes";
 
+		String cat = "";
+		if (Character.toLowerCase(option.charAt(0)) == 'a') {
+
+			String continueAdd = "yes";
+			Product newProduct = null;
 
 			do {
-
 				System.out
 						.print("What would you like to add? Consumable, Housewares, Automobile : ");
 				cat = scan.nextLine();
-				newProduct = null;
+				cat = Vailidator.getAddProduct(scan, cat);
 				// scan.in
 				System.out.print("Enter a name: ");
-				name = scan.nextLine();
+				String name = scan.nextLine();
+				System.out.println("Enter a description");
+				String description = scan.nextLine();
 				// scan.in for price too
 				System.out.print("Enter a price: ");
-				price = scan.nextDouble();
-				scan.nextLine();
+				double price = scan.nextDouble();
 				System.out.println();
+				scan.nextLine();
 
-				// switch(in)
-				// newProduct = new Consumable(in, price);
 				switch (cat) {
 				case "Consumable":
-					newProduct = new Consumable(name, price);
+					newProduct = new Consumable(name, price, description);
+					System.out.println("Food added");
 					break;
 				case "Housewares":
-					newProduct = new Housewares(name, price);
+					newProduct = new Housewares(name, price, description);
 					break;
 				case "Automobile":
-					newProduct = new Automobile(name, price);
+					newProduct = new Automobile(name, price, description);
 					break;
 				}
+				System.out.println(continueAdd);
 				System.out.println("Add another?");
 				continueAdd = scan.nextLine();
+
 			} while (Character.toLowerCase(continueAdd.charAt(0)) == 'y');
 		} else {
 			// constructor will call writetofile method
@@ -91,9 +84,9 @@ public class testStore {
 					for (String[] s : products) {
 						if (s[0].equals(option2)) {
 							newOrder.addItem(Integer.parseInt(s[0]), quantity);
-							double cost = quantity * Double.parseDouble(s[3]);
+							double cost = quantity * Double.parseDouble(s[4]);
 							BigDecimal bd = new BigDecimal(cost).setScale(2,
-									RoundingMode.HALF_EVEN);
+									RoundingMode.HALF_UP);
 
 							cost = bd.doubleValue();
 
@@ -104,20 +97,8 @@ public class testStore {
 				}
 			} while (!option2.equals("checkout"));
 
-			System.out.println("\nPlease select an item or checkout");
-			option2 = scan.nextLine();
-			option2 = Vailidator.getCheckout(scan, option2);
-
 		}
 
-		// continue?
-
-		// user
-		// print menu
-		// add to cart/ view menu // if no items in arraylist no checkout option
-		// add to cart
-		// scan.in >> item
-		// additem / view menu / checkout
 		scan.close();
 	}
 }

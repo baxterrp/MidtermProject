@@ -4,26 +4,24 @@ import java.math.RoundingMode;
 
 public class Housewares extends Product implements Taxable{
 	
-	public Housewares(String name, double price){
+	//constructor sets id, name, prices, description, and category - calls writeToFile
+	public Housewares(String name, double price, String description){
 		setId();
 		setName(name);
 		setPrice(price, applyTaxes(price));
+		setDescription(description);
 		setCategory("Housewares");
 		
-		FileOperations.writeToFile(getId(), getName(), getCategory(), getPrice(), getPostTax());
+		//calls writeToFile passing variables
+		FileOperations.writeToFile(getId(), getName(),  getCategory(), getDescription(), getPrice(), getPostTax());
 	}
 	
-	//apply 6% sales tax to price
-	public double applyTaxes(double price){
+	//apply 6% sales tax to price - return as string
+	public String applyTaxes(double price){
 		
 		double taxed = price*1.06;
 		
-		BigDecimal bd = new BigDecimal(taxed).setScale(2,
-				RoundingMode.HALF_EVEN);
-		
-		taxed = bd.doubleValue();
-		
-		return taxed;
+		return String.format("%.2f", taxed);
 	}
 
 }

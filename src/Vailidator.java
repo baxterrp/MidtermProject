@@ -1,16 +1,20 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+
 public class Vailidator {
+
 	//Validates first question
 	public static String getUserChoice(Scanner scan, String ans){
 		while(Character.toLowerCase(ans.charAt(0))!='a' && (Character.toLowerCase(ans.charAt(0)) !='p')){
 			System.out.println("Invaild input. You must choose \"Add item\" or \"Purchase item\"");
+			
 			ans = scan.nextLine();
 		}
 		return ans;
 	}
 
 	public static String getAddProduct(Scanner scan, String ans) {
+
 		while (Character.toLowerCase(ans.charAt(0)) !='c' && Character.toLowerCase(ans.charAt(0)) != 'h'
 			&& Character.toLowerCase(ans.charAt(0))!='a') {
 			System.out
@@ -19,21 +23,41 @@ public class Vailidator {
 		}
 		return ans;
 	}
-		public static String getIndex(Scanner scan, String ans){
-			boolean isValid = false;
-			ArrayList<String[]> products = FileOperations.getFile();
-				while(!isValid){
-					for(String [] s : products){
-						if (ans.equals(s[0])){
-							isValid = true;
-						}else
-						System.out.println("Invalid input. You must choose \"item#\" or \"view order\" or \"view menu\" or \"checkout\"");
+	
+
+	public static String getIndex(Scanner scan, String ans) {
+		Scanner vScan = scan;
+		boolean isValid = false;
+
+		ArrayList<String[]> products = FileOperations.getFile();
+
+		while (!isValid) {
+
+			if (ans.equals("view order") || ans.equals("view menu")
+					|| ans.equals("checkout")) {
+				isValid = true;
+			} else {
+				for (String[] s : products) {
+					if (ans.equals(s[0])) {
+						isValid = true;
+						break;
 					}
 				}
-				return ans;
+				if (!isValid) {
+					System.out
+							.println("Invalid input. You must choose \"item#\" or \"view order\" or \"view menu\" or \"checkout\"");
+					ans = vScan.nextLine();
+				}
+			}
 		}
+
 	
 	
+
+		return ans;
+	}
+
+
 	public static String getContinue(Scanner scan, String ans) {
 		while (Character.toLowerCase(ans.charAt(0)) != 'y'
 				&& Character.toLowerCase(ans.charAt(0)) != 'n') {
@@ -42,6 +66,7 @@ public class Vailidator {
 		}
 		return ans;
 	}
+
 	//Validates checkout or add item
 	public static String getCheckout(Scanner scan, String ans){
 		while (Character.toLowerCase(ans.charAt(0)) !='s' && Character.toLowerCase(ans.charAt(0)) !='c'){
@@ -50,4 +75,6 @@ public class Vailidator {
 		}
 		return ans;
 	}
+
+
 }

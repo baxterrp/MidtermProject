@@ -13,7 +13,8 @@ public class FileOperations {
 	public static Path productsPath = Paths.get("products.txt");
 	public static File productsFile = productsPath.toFile();
 
-	public static void writeToFile(int id, String category, String name,
+	//write to file accepts class variables and writes to file using ',' as delimiter
+	public static void writeToFile(int id, String name, String category, String description,
 			double price, double postTax) {
 
 		PrintWriter printWriter = null;
@@ -21,7 +22,7 @@ public class FileOperations {
 		try {
 			printWriter = new PrintWriter(new FileOutputStream("products.txt",
 					true));
-			printWriter.write(id + "," + category + "," + name + "," + price
+			printWriter.write(id + "," + name + "," + category + "," + description + "," + price
 					+ "," + postTax + "\n");
 		} catch (IOException ioex) {
 			ioex.printStackTrace();
@@ -32,10 +33,9 @@ public class FileOperations {
 			}
 		}
 
-		// write these perameters to a file using id,category,name,price,postTax
-		// format - no spaces
 	}
 
+	//getFile reads file and returns arrayList of string[] called product
 	public static ArrayList<String[]> getFile() {
 		ArrayList<String[]> products = new ArrayList<String[]>();
 

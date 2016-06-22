@@ -1,13 +1,16 @@
 
 public class Consumable extends Product{
 
-	public Consumable(String name, double price){
+	//constructor sets id, name, prices, description, and category - calls writeToFile
+	public Consumable(String name, double price, String description){
 		setId();
 		setName(name);
-		setPrice(price, price);
+		setPrice(price, Double.toString(price));
+		setDescription(description);
 		setCategory("Consumable");
 		
-		FileOperations.writeToFile(getId(), getName(), getCategory(), getPrice(), getPostTax());
+		//calls writeToFile passing variables
+		FileOperations.writeToFile(getId(), getName(),  getCategory(), getDescription(), getPrice(), getPostTax());
 	}
 	
 
