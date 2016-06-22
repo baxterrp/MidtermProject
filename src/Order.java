@@ -56,17 +56,18 @@ public class Order {
 		return output;
 	}
 
-	//checkout
+	// checkout
 	public void checkout() {
 
-		//print current order
+		// print current order
 		String output = printOrder() + "\n";
-		
-		//set totals to 0
+
+		// set totals to 0
 		double total = 0;
 		double subTotal = 0;
-		
-		//loop through order by id - check order id's against id's stored in file - add price and postTax to total and subtotal
+
+		// loop through order by id - check order id's against id's stored in
+		// file - add price and postTax to total and subtotal
 		for (int i : newOrder) {
 			for (String[] s : products) {
 				if (i == Integer.parseInt(s[0])) {
@@ -76,32 +77,34 @@ public class Order {
 			}
 		}
 
-		//calculate amount of taxes by subtracting subTotal from total
+		// calculate amount of taxes by subtracting subTotal from total
 		double taxes = total - subTotal;
 
-		//output totals
-		output += "Taxes\t\t\t\t\t\t\t\t$" + String.format("%.2f", taxes) + "\n\n";
-		output += "Total\t\t\t\t\t\t\t\t$" + total;
+		// output totals
+		output += "Taxes\t\t\t\t\t\t\t\t$" + String.format("%.2f", taxes)
+				+ "\n\n";
+		output += "Total\t\t\t\t\t\t\t\t$" + String.format("%.2f", total);
 		System.out.println(output);
 		PaymentType.getType(total);
 	}
 
-	//print menu loops through products printing out each item line by line
+	// print menu loops through products printing out each item line by line
 	public void printMenu() {
 		System.out
-				.println("Item#\t\tItem\t\t\tCategory\t\tPrice\t\t\t\n****\t\t****\t\t\t********\t\t*****");
+				.println("Item#\t\tItem\t\t\tCategory\t\tPrice\t\tItem Description\n****\t\t****\t\t\t********\t\t*****\t\t****************");
 		for (String[] s : products) {
 			if (s[1].length() > 14) {
 				System.out.println(s[0] + "\t\t" + s[1] + "\t" + s[2] + "\t\t"
-						+ "$" + s[4]);
+						+ "$" + s[4] + "\t\t" + s[3]);
 
 			} else if (s[1].length() > 7) {
 				System.out.println(s[0] + "\t\t" + s[1] + "\t\t" + s[2]
-						+ "\t\t" + "$" + s[4]);
+						+ "\t\t" + "$" + s[4] + "\t\t" + s[3]);
 
 			} else {
 				System.out.println(s[0] + "\t\t" + s[1] + "\t\t\t" + s[2]
-						+ "\t\t" + "$" + s[4]);
+						+ "\t\t" + "$" + s[4] + "\t\t" + s[3]);
+
 			}
 		}
 	}
