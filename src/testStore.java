@@ -65,16 +65,16 @@ public class testStore {
 
 				System.out
 						.println("\nPlease select an item#, view order, view menu, or checkout");
-				option2 = scan.nextLine();
-				Vailidator.getIndex(scan, option2);
 
-				if (option2.equals("view order")) {
+				option2 = Vailidator.getIndex(scan);
+
+				if (Character.toLowerCase(option2.charAt(0)) == 'o') {
 					// run printOrder
 					System.out.println(newOrder.printOrder());
 
-				} else if (option2.equals("checkout")) {
+				} else if (Character.toLowerCase(option2.charAt(0)) == 'c') {
 					newOrder.checkout();
-				} else if (option2.equals("view menu")) {
+				} else if (Character.toLowerCase(option2.charAt(0)) == 'm') {
 					newOrder.printMenu();
 				} else {
 					// add item to order
