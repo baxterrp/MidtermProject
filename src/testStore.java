@@ -64,7 +64,7 @@ public class testStore {
 			do {
 
 				System.out
-						.println("\nPlease select an item#, view order, view menu, or checkout");
+						.println("\nPlease select an item# or select order, menu, or checkout");
 
 				option2 = Vailidator.getIndex(scan);
 
