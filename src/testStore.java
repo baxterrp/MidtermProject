@@ -10,7 +10,7 @@ public class testStore {
 
 		System.out.print("What would you like to do? Add item / Purchase item");
 		String option = scan.nextLine();
-		option = Vailidator.getUserChoice(scan, option);
+		option = Validator.getUserChoice(scan, option);
 		System.out.println();
 
 		String cat = "";
@@ -23,7 +23,7 @@ public class testStore {
 				System.out
 						.print("What would you like to add? Consumable, Housewares, Automobile : ");
 				cat = scan.nextLine();
-				cat = Vailidator.getAddProduct(scan, cat);
+				cat = Validator.getAddProduct(scan, cat);
 				// scan.in
 				System.out.print("Enter a name: ");
 				String name = scan.nextLine();
@@ -64,17 +64,17 @@ public class testStore {
 			do {
 
 				System.out
-						.println("\nPlease select an item#, view order, view menu, or checkout");
-				option2 = scan.nextLine();
-				Vailidator.getIndex(scan, option2);
+						.println("\nPlease select an item# or select order, menu, or checkout");
 
-				if (option2.equals("view order")) {
+				option2 = Validator.getIndex(scan);
+
+				if (Character.toLowerCase(option2.charAt(0)) == 'o') {
 					// run printOrder
 					System.out.println(newOrder.printOrder());
 
-				} else if (option2.equals("checkout")) {
+				} else if (Character.toLowerCase(option2.charAt(0)) == 'c') {
 					newOrder.checkout();
-				} else if (option2.equals("view menu")) {
+				} else if (Character.toLowerCase(option2.charAt(0)) == 'm') {
 					newOrder.printMenu();
 				} else {
 					// add item to order

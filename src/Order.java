@@ -46,7 +46,7 @@ public class Order {
 			}
 		}
 
-		output += "\nSub Total\t\t\t\t\t\t\t$" + subTotal;
+		output += "\nSub Total\t\t\t\t\t\t\t$" + String.format("%.2f",subTotal);
 
 		return output;
 	}
