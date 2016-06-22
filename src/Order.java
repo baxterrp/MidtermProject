@@ -77,7 +77,19 @@ public class Order {
 
 		// calculate amount of taxes by subtracting subTotal from total
 		double taxes = total - subTotal;
-		double change = PaymentType.getType(total);
+		String paymentType = PaymentType.getType(total);
+		double change = 0;
+		switch (paymentType) {
+		case "cash":
+			change = PaymentType.getChange(total);
+			break;
+		case "check":
+			change = PaymentType.getCheck(total);
+			break;
+		case "card":
+			change = PaymentType.getCC(total);
+			break;
+		}
 
 		// output receipt
 		String output = "\nYour receipt: \n\n";
@@ -86,7 +98,10 @@ public class Order {
 				+ "\n\n";
 		output += "Total\t\t\t\t\t\t\t\t$" + String.format("%.2f", total);
 		output += "\n\nYou paid : $" + String.format("%.2f", (total + change));
-		output += "\n\nYour change is : $" + String.format("%.2f", change);
+		output += " with " + paymentType + ".\n";
+		if (paymentType.equals("cash")) {
+			output += "\n\nYour change is : $" + String.format("%.2f", change) + "\n";
+		}
 		System.out.println(output);
 	}
 
@@ -111,4 +126,3 @@ public class Order {
 		}
 	}
 }
-     

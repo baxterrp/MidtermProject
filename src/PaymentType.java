@@ -9,7 +9,7 @@ import java.util.*;
 
 public class PaymentType {
 
-	public static double getType(double total) {
+	public static String getType(double total) {
 		Scanner scan = new Scanner(System.in);
 		String pType = "";
 		int x = 0;
@@ -21,18 +21,18 @@ public class PaymentType {
 				pType = scan.nextLine();
 				switch (pType) {
 				case "cash":
-					return (PaymentType.getChange(total));
+					return (pType);
 				case "check":
-					return (PaymentType.getCheck(total));
+					return (pType);
 				case "card":
-					return (PaymentType.getCC(total));
+					return (pType);
 				}
 			} catch (Exception e) {
 				System.out.println("invalid input. please try again.");
 			}
 		} while (x == 0);
 
-		return 0;
+		return pType;
 	}
 
 	public static double getChange(double total) {
