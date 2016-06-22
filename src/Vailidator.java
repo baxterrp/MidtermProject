@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Vailidator {
 	//Validates first question
 	public static String getUserChoice(Scanner scan, String ans){
-		while(!ans.equalsIgnoreCase("Add item") && !ans.equalsIgnoreCase("Purchase item")){
+		while(Character.toLowerCase(ans.charAt(0))!='a' && (Character.toLowerCase(ans.charAt(0)) !='p')){
 			System.out.println("Invaild input. You must choose \"Add item\" or \"Purchase item\"");
 			ans = scan.nextLine();
 		}
@@ -11,8 +11,8 @@ public class Vailidator {
 	}
 
 	public static String getAddProduct(Scanner scan, String ans) {
-		while (!ans.equalsIgnoreCase("Consumables") || !ans.equalsIgnoreCase("Housewares")
-				|| !ans.equalsIgnoreCase("Automobile")) {
+		while (Character.toLowerCase(ans.charAt(0)) !='c' && Character.toLowerCase(ans.charAt(0)) != 'h'
+			&& Character.toLowerCase(ans.charAt(0))!='a') {
 			System.out
 					.println("Invalid input. You must choose \"Consumables\" or \"Housewares\" or \"Automobile\"");
 			ans = scan.nextLine();
@@ -34,10 +34,6 @@ public class Vailidator {
 		}
 	
 	
-	
-	
-	
-	
 	public static String getContinue(Scanner scan, String ans) {
 		while (Character.toLowerCase(ans.charAt(0)) != 'y'
 				&& Character.toLowerCase(ans.charAt(0)) != 'n') {
@@ -48,8 +44,8 @@ public class Vailidator {
 	}
 	//Validates checkout or add item
 	public static String getCheckout(Scanner scan, String ans){
-		while (!ans.equalsIgnoreCase("Please select an item") && !ans.equalsIgnoreCase("checkout")){
-			System.out.println("Invalid input. You must choose \"Please select an item\" or \"checkout\"");
+		while (Character.toLowerCase(ans.charAt(0)) !='s' && Character.toLowerCase(ans.charAt(0)) !='c'){
+			System.out.println("Invalid input. You must choose \"Select an item\" or \"checkout\"");
 			ans=scan.nextLine();
 		}
 		return ans;
