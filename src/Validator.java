@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Vailidator {
+public class Validator {
 
 	//Validates first question
 	public static String getUserChoice(Scanner scan, String ans){
