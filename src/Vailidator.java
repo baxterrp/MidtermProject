@@ -25,16 +25,20 @@ public class Vailidator {
 	}
 	
 
-	public static String getIndex(Scanner scan, String ans) {
+	public static String getIndex(Scanner scan) {
 		Scanner vScan = scan;
 		boolean isValid = false;
+		
+		String ans = scan.nextLine();
 
 		ArrayList<String[]> products = FileOperations.getFile();
 
 		while (!isValid) {
+			
+	
 
-			if (ans.equals("view order") || ans.equals("view menu")
-					|| ans.equals("checkout")) {
+			if (Character.toLowerCase(ans.charAt(0)) == 'o' || Character.toLowerCase(ans.charAt(0)) == 'm'
+					|| Character.toLowerCase(ans.charAt(0)) == 'c') {
 				isValid = true;
 			} else {
 				for (String[] s : products) {
@@ -43,12 +47,13 @@ public class Vailidator {
 						break;
 					}
 				}
-				if (!isValid) {
-					System.out
-							.println("Invalid input. You must choose \"item#\" or \"view order\" or \"view menu\" or \"checkout\"");
-					ans = vScan.nextLine();
-				}
 			}
+			if (!isValid) {
+				System.out
+						.println("Invalid input. You must choose \"item#\" or \"view order\" or \"view menu\" or \"checkout\"");
+				ans = vScan.nextLine();
+			}
+
 		}
 
 	
