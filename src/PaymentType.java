@@ -9,36 +9,33 @@ import java.util.*;
 
 public class PaymentType {
 
-	public static void getType(double total) {
+	public static double getType(double total) {
 		Scanner scan = new Scanner(System.in);
 		String pType = "";
 		int x = 0;
 
 		do {
 			try {
-				System.out.println("how would you like to pay? cash/check/card");
+				System.out
+						.println("how would you like to pay? cash/check/card");
 				pType = scan.nextLine();
 				switch (pType) {
 				case "cash":
-					System.out.println(PaymentType.getChange(total));
-					x = 1;
-					break;
+					return (PaymentType.getChange(total));
 				case "check":
-					System.out.print(PaymentType.getCheck(total));
-					x = 1;
-					break;
+					return (PaymentType.getCheck(total));
 				case "card":
-					System.out.println(PaymentType.getCC(total));
-					x = 1;
-					break;
+					return (PaymentType.getCC(total));
 				}
 			} catch (Exception e) {
 				System.out.println("invalid input. please try again.");
 			}
 		} while (x == 0);
+
+		return 0;
 	}
 
-	public static String getChange(double total) {
+	public static double getChange(double total) {
 		double cashPayed = 0;
 		double change = 0;
 		Scanner scan = new Scanner(System.in);
@@ -49,8 +46,8 @@ public class PaymentType {
 		// total = bd1.doubleValue();
 		try {
 			while (p == 0) {
-				System.out.println(
-						"you owe $" + String.format("%.2f", total) + ". How much cash are you paying with? \n");
+				System.out.println("you owe $" + String.format("%.2f", total)
+						+ ". How much cash are you paying with? \n");
 				System.out.print("$");
 				cashPayed = scan.nextDouble();
 				if (cashPayed >= total) {
@@ -68,22 +65,23 @@ public class PaymentType {
 		}
 		String c = "";
 		if (change > 0) {
-			c = "your change is $" + String.format("%.2f", change) + ". thanks for shopping";
+			System.out.println("your change is $"
+					+ String.format("%.2f", change) + ". thanks for shopping");
 		} else
-			System.out.println("have a nice day");
-		return c;
+			System.out.println("\nGreat, Thanks for shopping!");
+		return change;
 	}
 
-	public static String getCheck(double total) {
+	public static double getCheck(double total) {
 		Scanner scan = new Scanner(System.in);
 		int t = 0;
 		int cn = 0;
 		String checkNo = "";
-		BigDecimal bd1 = new BigDecimal(total).setScale(2, RoundingMode.HALF_UP);
 		do {
 			try {
 				System.out.println();
-				System.out.println("please enter your checks routing, account and check #'s");
+				System.out
+						.println("please enter your checks routing, account and check #'s");
 
 				checkNo = scan.nextLine();
 				cn = Integer.parseInt(checkNo);
@@ -95,21 +93,23 @@ public class PaymentType {
 			}
 
 		} while (t == 0);
-		String r = "check no. " + cn + " was accepted. \n \n purchase of $" + bd1.doubleValue()
-				+ " complete, thank you for shopping";
-		return r;
+		System.out.println("check no. " + cn
+				+ " was accepted.\n\nPurchase of $"
+				+ String.format("%.2f", total)
+				+ " complete, thank you for shopping.");
+		return 0;
 
 	}
 
-	public static String getCC(double total) {
+	public static double getCC(double total) {
 		Scanner scan = new Scanner(System.in);
 		int t = 0;
 		String cn = "";
-		BigDecimal bd1 = new BigDecimal(total).setScale(2, RoundingMode.HALF_UP);
 
 		try {
 			while (cn.length() > 16 || cn.length() < 16) {
-				System.out.println("please enter 16-digit credit card number (no dashes)");
+				System.out
+						.println("please enter 16-digit credit card number (no dashes)");
 
 				cn = scan.nextLine();
 
@@ -128,7 +128,7 @@ public class PaymentType {
 				d = scan.nextLine();
 				t = 1;
 				break;
-//				Date exp = (java.sql.Date) df.parse(d);
+				// Date exp = (java.sql.Date) df.parse(d);
 			} catch (Exception e) {
 				System.out.println("invalid input. please try again.");
 				t = 0;
@@ -147,9 +147,10 @@ public class PaymentType {
 				t = 0;
 			}
 		} while (t == 0);
-		String c = "amount of $" + (bd1.doubleValue()) + " charged to " + cn + ". thank you for shopping." + "";
+		System.out.println("amount of $" + String.format("%.2f", total)
+				+ " charged to " + cn + ". thank you for shopping." + "");
 
-		return c;
+		return 0;
 
 	}
 

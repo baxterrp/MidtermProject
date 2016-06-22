@@ -95,7 +95,7 @@ public class testStore {
 						}
 					}
 				}
-			} while (!option2.equals("checkout"));
+			} while (Character.toLowerCase(option2.charAt(0)) != 'c');
 
 		}
 

@@ -20,33 +20,37 @@ public class Order {
 	public String printOrder() {
 
 		double subTotal = 0;
-		String output = "";
 
-		System.out.println("Item#\t\tItem\t\t\tCategory\t\tPrice\t\t\t\n*****\t\t****\t\t\t********\t\t*****");
+		String output = "Item#\t\tItem\t\t\tCategory\t\tPrice\t\t\t\n*****\t\t****\t\t\t********\t\t*****\n\n";
 		for (int i : newOrder) {
 			for (String[] s : products) {
 				if (i == Integer.parseInt(s[0])) {
 
 					if (s[1].length() > 15) {
-						output += s[0] + "\t\t" + s[1] + "\t" + s[2] + "\t\t" + "$" + s[4] + "\n";
+						output += s[0] + "\t\t" + s[1] + "\t" + s[2] + "\t\t"
+								+ "$" + s[4] + "\n";
 
 					} else if (s[1].length() > 7) {
-						output += s[0] + "\t\t" + s[1] + "\t\t" + s[2] + "\t\t" + "$" + s[4] + "\n";
+						output += s[0] + "\t\t" + s[1] + "\t\t" + s[2] + "\t\t"
+								+ "$" + s[4] + "\n";
 
 					} else {
-						output += s[0] + "\t\t" + s[1] + "\t\t\t" + s[2] + "\t\t" + "$" + s[4] + "\n";
+						output += s[0] + "\t\t" + s[1] + "\t\t\t" + s[2]
+								+ "\t\t" + "$" + s[4] + "\n";
 					}
 
 					subTotal += Double.parseDouble(s[4]);
 
-					BigDecimal bd = new BigDecimal(subTotal).setScale(2, RoundingMode.HALF_UP);
+					BigDecimal bd = new BigDecimal(subTotal).setScale(2,
+							RoundingMode.HALF_UP);
 
 					subTotal = bd.doubleValue();
 				}
 			}
 		}
 
-		output += "\nSub Total\t\t\t\t\t\t\t$" + String.format("%.2f",subTotal);
+		output += "\nSub Total\t\t\t\t\t\t\t$"
+				+ String.format("%.2f", subTotal);
 
 		return output;
 	}
@@ -55,7 +59,6 @@ public class Order {
 	public void checkout() {
 
 		// print current order
-		String output = printOrder() + "\n";
 
 		// set totals to 0
 		double total = 0;
@@ -75,26 +78,35 @@ public class Order {
 		// calculate amount of taxes by subtracting subTotal from total
 		double taxes = total - subTotal;
 
-		// output totals
-		output += "Taxes\t\t\t\t\t\t\t\t$" + String.format("%.2f", taxes) + "\n\n";
+		double change = PaymentType.getType(total);
+
+		// output receipt
+		String output = "\nYour receipt: \n\n";
+		output += printOrder() + "\n";
+		output += "Taxes\t\t\t\t\t\t\t\t$" + String.format("%.2f", taxes)
+				+ "\n\n";
 		output += "Total\t\t\t\t\t\t\t\t$" + String.format("%.2f", total);
+		output += "\n\nYou paid : $" + String.format("%.2f", (total + change));
+		output += "\n\nYour change is : $" + String.format("%.2f", change);
 		System.out.println(output);
-		PaymentType.getType(total);
 	}
 
 	// print menu loops through products printing out each item line by line
 	public void printMenu() {
-		System.out.println(
-				"Item#\t\tItem\t\t\tCategory\t\tPrice\t\tItem Description\n****\t\t****\t\t\t********\t\t*****\t\t****************");
+		System.out
+				.println("Item#\t\tItem\t\t\tCategory\t\tPrice\t\tItem Description\n****\t\t****\t\t\t********\t\t*****\t\t****************");
 		for (String[] s : products) {
 			if (s[1].length() > 14) {
-				System.out.println(s[0] + "\t\t" + s[1] + "\t" + s[2] + "\t\t" + "$" + s[4] + "\t\t" + s[3]);
+				System.out.println(s[0] + "\t\t" + s[1] + "\t" + s[2] + "\t\t"
+						+ "$" + s[4] + "\t\t" + s[3]);
 
 			} else if (s[1].length() > 7) {
-				System.out.println(s[0] + "\t\t" + s[1] + "\t\t" + s[2] + "\t\t" + "$" + s[4] + "\t\t" + s[3]);
+				System.out.println(s[0] + "\t\t" + s[1] + "\t\t" + s[2]
+						+ "\t\t" + "$" + s[4] + "\t\t" + s[3]);
 
 			} else {
-				System.out.println(s[0] + "\t\t" + s[1] + "\t\t\t" + s[2] + "\t\t" + "$" + s[4] + "\t\t" + s[3]);
+				System.out.println(s[0] + "\t\t" + s[1] + "\t\t\t" + s[2]
+						+ "\t\t" + "$" + s[4] + "\t\t" + s[3]);
 
 			}
 		}
