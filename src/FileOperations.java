@@ -13,6 +13,7 @@ public class FileOperations {
 	public static Path productsPath = Paths.get("products.txt");
 	public static File productsFile = productsPath.toFile();
 
+	//write to file accepts class variables and writes to file using ',' as delimiter
 	public static void writeToFile(int id, String name, String category, String description,
 			double price, double postTax) {
 
@@ -32,10 +33,9 @@ public class FileOperations {
 			}
 		}
 
-		// write these perameters to a file using id,category,name,price,postTax
-		// format - no spaces
 	}
 
+	//getFile reads file and returns arrayList of string[] called product
 	public static ArrayList<String[]> getFile() {
 		ArrayList<String[]> products = new ArrayList<String[]>();
 

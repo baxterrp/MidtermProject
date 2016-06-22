@@ -86,7 +86,7 @@ public class testStore {
 							newOrder.addItem(Integer.parseInt(s[0]), quantity);
 							double cost = quantity * Double.parseDouble(s[4]);
 							BigDecimal bd = new BigDecimal(cost).setScale(2,
-									RoundingMode.HALF_EVEN);
+									RoundingMode.HALF_UP);
 
 							cost = bd.doubleValue();
 

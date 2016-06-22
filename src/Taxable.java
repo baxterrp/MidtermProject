@@ -1,4 +1,5 @@
 public interface Taxable {
 
-	public double applyTaxes(double price);
+	//apply taxes to non-food items
+	public String applyTaxes(double price);
 }

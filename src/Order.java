@@ -1,15 +1,12 @@
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Order {
 
 	private ArrayList<String[]> products = FileOperations.getFile();
 	private ArrayList<Integer> newOrder = new ArrayList<Integer>();
-
-	public Order() {
-
-	}
 
 	// user chooses items - they are added to newOrder by id number
 	public void addItem(int id, int quantity) {
@@ -47,7 +44,7 @@ public class Order {
 					subTotal += Double.parseDouble(s[4]);
 
 					BigDecimal bd = new BigDecimal(subTotal).setScale(2,
-							RoundingMode.HALF_EVEN);
+							RoundingMode.HALF_UP);
 
 					subTotal = bd.doubleValue();
 				}
@@ -59,12 +56,17 @@ public class Order {
 		return output;
 	}
 
+	//checkout
 	public void checkout() {
 
+		//print current order
 		String output = printOrder() + "\n";
+		
+		//set totals to 0
 		double total = 0;
 		double subTotal = 0;
-
+		
+		//loop through order by id - check order id's against id's stored in file - add price and postTax to total and subtotal
 		for (int i : newOrder) {
 			for (String[] s : products) {
 				if (i == Integer.parseInt(s[0])) {
@@ -74,22 +76,16 @@ public class Order {
 			}
 		}
 
-		BigDecimal bd = new BigDecimal(total).setScale(2,
-				RoundingMode.HALF_EVEN);
-
-		total = bd.doubleValue();
+		//calculate amount of taxes by subtracting subTotal from total
 		double taxes = total - subTotal;
 
-		BigDecimal bd2 = new BigDecimal(taxes).setScale(2,
-				RoundingMode.HALF_EVEN);
-
-		taxes = bd2.doubleValue();
-
-		output += "Taxes\t\t\t\t\t\t\t\t$" + taxes + "\n\n";
+		//output totals
+		output += "Taxes\t\t\t\t\t\t\t\t$" + String.format("%.2f", taxes) + "\n\n";
 		output += "Total\t\t\t\t\t\t\t\t$" + total;
 		System.out.println(output);
 	}
 
+	//print menu loops through products printing out each item line by line
 	public void printMenu() {
 		System.out
 				.println("Item#\t\tItem\t\t\tCategory\t\tPrice\t\t\t\n****\t\t****\t\t\t********\t\t*****");
